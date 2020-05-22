@@ -1,4 +1,4 @@
-package org.afdemp.leisurehotel4animals.entities;
+package org.afdemp.wellness.entities;
 
 import java.io.Serializable;
 import java.util.Date;
