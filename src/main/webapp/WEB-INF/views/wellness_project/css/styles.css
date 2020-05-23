@@ -1,4 +1,4 @@
-
+/*
 
 :root {
   --blue: #007bff;
@@ -3577,7 +3577,7 @@ input[type=button].btn-block {
   }
 }
 
-/*card*/
+card
 
 .card {
   position: relative;
@@ -4428,7 +4428,7 @@ a.close.disabled {
 }
 
 
-/*carousel*/
+carousel
 .carousel {
   position: relative;
 }
@@ -8302,7 +8302,7 @@ button.bg-dark:focus {
 
 
 
-/*text*/
+text
 .text-monospace {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
@@ -8676,7 +8676,7 @@ img::-moz-selection {
 
 
 
-/*timeline about us section*/
+timeline about us section
 .timeline {
   position: relative;
   padding: 0;
@@ -8845,7 +8845,7 @@ img::-moz-selection {
   }
 }
 
-/*about us homepage*/
+about us homepage
 .team-member {
   margin-bottom: 3rem;
   text-align: center;
@@ -8913,7 +8913,7 @@ img::-moz-selection {
 
 
 
-/*navigation*/
+navigation
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -9454,7 +9454,7 @@ img::-moz-selection {
 
 
 
-/*header*/
+header
 
 
 header.masthead {
@@ -9503,7 +9503,7 @@ header.masthead .masthead-heading {
 }
 
 
-/*contact us*/
+contact us
 section#contact {
   background-color: #212529;
   background-image: url("../assets/img/34056.jpg");
@@ -9558,7 +9558,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   color: #ced4da;
 }
 
-/*footer*/
+footer
 .footer {
   text-align: center;
   font-size: 0.9rem;
@@ -9575,4 +9575,4 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 
 
-
+*/
