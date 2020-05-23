@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "users_contactforms", catalog = "wellness", schema = "")
 @XmlRootElement
-public class UsersContactforms implements Serializable {
+public class Usercontactform implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,14 +49,14 @@ public class UsersContactforms implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
 
-    public UsersContactforms() {
+    public Usercontactform() {
     }
 
-    public UsersContactforms(Long id) {
+    public Usercontactform(Long id) {
         this.id = id;
     }
 
-    public UsersContactforms(Long id, String subject, String message, Date createTime) {
+    public Usercontactform(Long id, String subject, String message, Date createTime) {
         this.id = id;
         this.subject = subject;
         this.message = message;
@@ -113,10 +113,10 @@ public class UsersContactforms implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsersContactforms)) {
+        if (!(object instanceof Usercontactform)) {
             return false;
         }
-        UsersContactforms other = (UsersContactforms) object;
+        Usercontactform other = (Usercontactform) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

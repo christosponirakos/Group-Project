@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "contactforms", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Contactforms implements Serializable {
+public class Contactform implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,14 +53,14 @@ public class Contactforms implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    public Contactforms() {
+    public Contactform() {
     }
 
-    public Contactforms(Long id) {
+    public Contactform(Long id) {
         this.id = id;
     }
 
-    public Contactforms(Long id, String name, String email, String subject, String message, Date createTime) {
+    public Contactform(Long id, String name, String email, String subject, String message, Date createTime) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -127,10 +127,10 @@ public class Contactforms implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Contactforms)) {
+        if (!(object instanceof Contactform)) {
             return false;
         }
-        Contactforms other = (Contactforms) object;
+        Contactform other = (Contactform) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "users_stats", catalog = "wellness", schema = "")
 @XmlRootElement
-public class UsersStats implements Serializable {
+public class Userstats implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,10 +45,10 @@ public class UsersStats implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
 
-    public UsersStats() {
+    public Userstats() {
     }
 
-    public UsersStats(Long id) {
+    public Userstats(Long id) {
         this.id = id;
     }
 
@@ -126,10 +126,10 @@ public class UsersStats implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsersStats)) {
+        if (!(object instanceof Userstats)) {
             return false;
         }
-        UsersStats other = (UsersStats) object;
+        Userstats other = (Userstats) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

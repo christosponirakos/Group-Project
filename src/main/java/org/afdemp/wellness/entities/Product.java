@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "products", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Products implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,21 +66,21 @@ public class Products implements Serializable {
     @Column(name = "image", nullable = false)
     private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId", fetch = FetchType.EAGER)
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId", fetch = FetchType.EAGER)
     private List<Cart> cartList;
     @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Type typeId;
 
-    public Products() {
+    public Product() {
     }
 
-    public Products(Long id) {
+    public Product(Long id) {
         this.id = id;
     }
 
-    public Products(Long id, String title, BigDecimal price, String shortDescription, String details, short expire, byte[] image) {
+    public Product(Long id, String title, BigDecimal price, String shortDescription, String details, short expire, byte[] image) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -155,11 +155,11 @@ public class Products implements Serializable {
     }
 
     @XmlTransient
-    public List<Orders> getOrdersList() {
+    public List<Order> getOrdersList() {
         return ordersList;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
+    public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
     }
 
@@ -190,10 +190,10 @@ public class Products implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Products)) {
+        if (!(object instanceof Product)) {
             return false;
         }
-        Products other = (Products) object;
+        Product other = (Product) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

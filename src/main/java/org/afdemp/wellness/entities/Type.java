@@ -34,7 +34,7 @@ public class Type implements Serializable {
     @Column(name = "type", nullable = false, length = 20)
     private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeId", fetch = FetchType.EAGER)
-    private List<Products> productsList;
+    private List<Product> productsList;
 
     public Type() {
     }
@@ -65,11 +65,11 @@ public class Type implements Serializable {
     }
 
     @XmlTransient
-    public List<Products> getProductsList() {
+    public List<Product> getProductsList() {
         return productsList;
     }
 
-    public void setProductsList(List<Products> productsList) {
+    public void setProductsList(List<Product> productsList) {
         this.productsList = productsList;
     }
 

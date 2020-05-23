@@ -35,7 +35,7 @@ public class Cart implements Serializable {
     private Date dateAdded;
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Products productId;
+    private Product productId;
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
@@ -68,11 +68,11 @@ public class Cart implements Serializable {
         this.dateAdded = dateAdded;
     }
 
-    public Products getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(Products productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 

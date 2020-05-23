@@ -2,7 +2,9 @@ package org.afdemp.wellness.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,16 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "subscriptions", catalog = "wellness", schema = "")
+@Table(name = "orders", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Subscriptions implements Serializable {
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,29 +37,25 @@ public class Subscriptions implements Serializable {
     @Column(name = "purchase_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date purchaseDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "expiration_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expirationDate;
-    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId", fetch = FetchType.EAGER)
+    private List<Subscription> subscriptionsList;
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Orders orderId;
+    private Product productId;
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
 
-    public Subscriptions() {
+    public Order() {
     }
 
-    public Subscriptions(Long id) {
+    public Order(Long id) {
         this.id = id;
     }
 
-    public Subscriptions(Long id, Date purchaseDate, Date expirationDate) {
+    public Order(Long id, Date purchaseDate) {
         this.id = id;
         this.purchaseDate = purchaseDate;
-        this.expirationDate = expirationDate;
     }
 
     public Long getId() {
@@ -74,20 +74,21 @@ public class Subscriptions implements Serializable {
         this.purchaseDate = purchaseDate;
     }
 
-    public Date getExpirationDate() {
-        return expirationDate;
+    @XmlTransient
+    public List<Subscription> getSubscriptionsList() {
+        return subscriptionsList;
     }
 
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
+    public void setSubscriptionsList(List<Subscription> subscriptionsList) {
+        this.subscriptionsList = subscriptionsList;
     }
 
-    public Orders getOrderId() {
-        return orderId;
+    public Product getProductId() {
+        return productId;
     }
 
-    public void setOrderId(Orders orderId) {
-        this.orderId = orderId;
+    public void setProductId(Product productId) {
+        this.productId = productId;
     }
 
     public User getUserId() {
@@ -108,10 +109,10 @@ public class Subscriptions implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Subscriptions)) {
+        if (!(object instanceof Order)) {
             return false;
         }
-        Subscriptions other = (Subscriptions) object;
+        Order other = (Order) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -120,7 +121,7 @@ public class Subscriptions implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.Subscriptions[ id=" + id + " ]";
+        return "org.afdemp.leisurehotel4animals.entities.Orders[ id=" + id + " ]";
     }
     
 }

@@ -70,15 +70,15 @@ public class User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Subscriptions> subscriptionsList;
+    private List<Subscription> subscriptionsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<UsersStats> usersStatsList;
+    private List<Userstats> usersStatsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Cart> cartList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<UsersContactforms> usersContactformsList;
+    private List<Usercontactform> usersContactformsList;
 
     public User() {
     }
@@ -154,29 +154,29 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public List<Subscriptions> getSubscriptionsList() {
+    public List<Subscription> getSubscriptionsList() {
         return subscriptionsList;
     }
 
-    public void setSubscriptionsList(List<Subscriptions> subscriptionsList) {
+    public void setSubscriptionsList(List<Subscription> subscriptionsList) {
         this.subscriptionsList = subscriptionsList;
     }
 
     @XmlTransient
-    public List<UsersStats> getUsersStatsList() {
+    public List<Userstats> getUsersStatsList() {
         return usersStatsList;
     }
 
-    public void setUsersStatsList(List<UsersStats> usersStatsList) {
+    public void setUsersStatsList(List<Userstats> usersStatsList) {
         this.usersStatsList = usersStatsList;
     }
 
     @XmlTransient
-    public List<Orders> getOrdersList() {
+    public List<Order> getOrdersList() {
         return ordersList;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
+    public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
     }
 
@@ -190,11 +190,11 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public List<UsersContactforms> getUsersContactformsList() {
+    public List<Usercontactform> getUsersContactformsList() {
         return usersContactformsList;
     }
 
-    public void setUsersContactformsList(List<UsersContactforms> usersContactformsList) {
+    public void setUsersContactformsList(List<Usercontactform> usersContactformsList) {
         this.usersContactformsList = usersContactformsList;
     }
 
