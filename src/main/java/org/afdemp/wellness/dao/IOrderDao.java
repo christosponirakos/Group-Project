@@ -4,7 +4,7 @@ import java.util.List;
 import org.afdemp.wellness.entities.Order;
 
 
-public interface IOrdersDao {
+public interface IOrderDao {
     
     public List<Order> findAllOrders();
     public Order findById(int id);

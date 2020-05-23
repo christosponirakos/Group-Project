@@ -4,11 +4,11 @@ package org.afdemp.wellness.dao;
 import java.util.List;
 
 
-public interface IObjectDao {
+public interface IObjectDao<T> {
     
-    public List<Object> findAll();
+    public List<T> findAll();
     public Object findById(long id);
-    public boolean save(Object object);
+    public boolean save(T entity);
     public boolean delete(long id);
-    public boolean update(Object object);
+    public boolean update(T entity);
 }

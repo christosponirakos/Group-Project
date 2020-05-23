@@ -3,17 +3,20 @@ package org.afdemp.wellness.dao;
 import java.util.List;
 import org.afdemp.wellness.entities.User;
 import org.hibernate.Criteria;
+import org.springframework.stereotype.Repository;
 
+
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements IObjectDao {
 
     @Override
-    public List<Object> findAll() {
+    public List<User> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Object>) criteria.list();
+        return (List<User>) criteria.list();
     }
 
     @Override
-    public Object findById(long id) {
+    public User findById(long id) {
         User u = getByKey((int) id);
         if (u != null) {
             return u;
