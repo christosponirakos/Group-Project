@@ -15,7 +15,7 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements IOb
     }
 
     @Override
-    public Object findById(long id) {
+    public Product findById(long id) {
         Product p = getByKey((int) id);
         if (p != null) {
             return p;

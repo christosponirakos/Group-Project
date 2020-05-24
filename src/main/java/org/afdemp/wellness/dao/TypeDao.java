@@ -15,7 +15,7 @@ public class TypeDao extends AbstractDao<Integer, Type> implements IObjectDao {
     }
 
     @Override
-    public Object findById(long id) {
+    public Type findById(long id) {
         Type t = getByKey((int) id);
         if (t != null) {
             return t;
