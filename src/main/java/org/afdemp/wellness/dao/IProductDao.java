@@ -9,4 +9,5 @@ public interface IProductDao {
     public boolean save(Product product);
     public boolean delete(int id);
     public boolean update(Product product);
+    public List<Product> findNutrition();
 }
