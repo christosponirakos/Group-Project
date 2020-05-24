@@ -6,7 +6,7 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.dao.ISubscriptionDao;
+import org.afdemp.wellness.dao.SubscriptionDaoImpl;
 import org.afdemp.wellness.entities.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,13 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SubscriptionServiceImpl implements ISubscriptionService {
 
     @Autowired
-    private ISubscriptionDao dao;
+    private SubscriptionDaoImpl dao;
 
     public List<Subscription> findAllSubscriptions() {
-        return dao.findAllSubscriptions();
+        return dao.findAll();
     }
 
-    public Subscription findById(int id) {
+    public Subscription findById(long id) {
         if (id <= 0) {
             return null;
         } else {
@@ -35,7 +35,7 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
         return dao.save(subscription);
     }
 
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         if (findById(id) != null) {
             return dao.delete(id);
         } else {
@@ -44,8 +44,8 @@ public class SubscriptionServiceImpl implements ISubscriptionService {
     }
 
     
-    public boolean updateById(int id, Subscription subscription) {
-        if (findById(id) != null) {
+    public boolean updateById(Subscription subscription) {
+        if (findById(subscription.getId()) != null) {
             return dao.update(subscription);
         } else {
             return false;

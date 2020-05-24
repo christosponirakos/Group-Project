@@ -7,8 +7,8 @@ import org.afdemp.wellness.entities.Type;
 
 public interface ITypeService {
     public List<Type> findAllTypes();
-    public Type findById(int id);
+    public Type findById(long id);
     public boolean save(Type type);
-    public boolean delete(int id);
+    public boolean delete(long id);
     public boolean update(Type type);
 }

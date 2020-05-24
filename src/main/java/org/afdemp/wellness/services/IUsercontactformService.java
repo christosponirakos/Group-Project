@@ -6,8 +6,8 @@ import org.afdemp.wellness.entities.Usercontactform;
 
 public interface IUsercontactformService {
     public List<Usercontactform> findAllUsercontactforms();
-    public Usercontactform findById(int id);
+    public Usercontactform findById(long id);
     public boolean save(Usercontactform usercontactform);
-    public boolean delete(int id);
+    public boolean delete(long id);
     public boolean update(Usercontactform usercontactform);
 }

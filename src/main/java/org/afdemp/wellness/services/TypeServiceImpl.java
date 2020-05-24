@@ -6,36 +6,37 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Cart;
+import org.afdemp.wellness.dao.TypeDaoImpl;
+
+import org.afdemp.wellness.entities.Type;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.afdemp.wellness.dao.CartDaoImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author ticho
  */
-@Service("cartService")
+@Service("typeService")
 @Transactional
-public class CartServiceImpl implements ICartService {
+public class TypeServiceImpl implements ITypeService {
 
     @Autowired
-    CartDaoImpl dao;
+    TypeDaoImpl dao;
 
     @Override
-    public List<Cart> findAllCarts() {
-        List<Cart> carts = dao.findAll();
-        if (carts.size() == 0) {
+    public List<Type> findAllTypes() {
+        List<Type> types = dao.findAll();
+        if (types.size() == 0) {
             //oops something went wrong---> sout ???out.print ???
             return null;
 
         }
-        return carts;
+        return types;
     }
 
     @Override
-    public Cart findById(long id) {
+    public Type findById(long id) {
         if (id <= 0) {
             return null;
 
@@ -45,8 +46,8 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public boolean save(Cart cart) {
-        return dao.save(cart);
+    public boolean save(Type type) {
+        return dao.save(type);
     }
 
     @Override
@@ -61,16 +62,15 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public boolean update(Cart cart) {
+    public boolean update(Type type) {
        
-        cart = findById(cart.getId());
-        if (cart != null) {
-            dao.update(cart);
+        type= findById(type.getId());
+        if (type != null) {
+            dao.update(type);
             return true;
         } else {
             return false;
         }
-       
     }
-
+       
 }

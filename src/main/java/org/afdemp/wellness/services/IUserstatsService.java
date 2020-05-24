@@ -9,8 +9,8 @@ import org.afdemp.wellness.entities.Userstats;
 public interface IUserstatsService {
     
     public List<Userstats> findAllUserStats();
-    public Userstats findById(int id);
+    public Userstats findById(long id);
     public boolean save(Userstats userstats);
-    public boolean delete(int id);
+    public boolean delete(long id);
     public boolean update(Userstats userstats);
 }

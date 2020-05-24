@@ -6,7 +6,7 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.dao.IProductDao;
+import org.afdemp.wellness.dao.ProductDaoImpl;
 import org.afdemp.wellness.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +21,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductServiceImpl implements IProductService{
     
     @Autowired
-    IProductDao dao;
+    ProductDaoImpl dao;
     
     public List<Product> findAllProducts() {
-        return dao.findAllProducts();
+        return dao.findAll();
     }
 
     
-    public Product findById(int id) {
+    public Product findById(long id) {
         if(id <= 0){
             return null;
         }else {
@@ -42,7 +42,7 @@ public class ProductServiceImpl implements IProductService{
     }
 
 
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         if(id <= 0){
             return false;
         }else{
@@ -51,8 +51,8 @@ public class ProductServiceImpl implements IProductService{
         
     }
 
-    public boolean updateById(int id, Product product) {
-        if (findById(id) != null) {
+    public boolean updateById(Product product) {
+        if (findById(product.getId()) != null) {
             return dao.update(product);
         } else {
             return false;

@@ -6,8 +6,8 @@ import org.afdemp.wellness.entities.Product;
 
 public interface IProductService {
     public List<Product> findAllProducts();
-    public Product findById(int id);
+    public Product findById(long id);
     public boolean save(Product product);
-    public boolean delete(int id);
-    public boolean updateById(int id, Product product);
+    public boolean delete(long id);
+    public boolean updateById(Product product);
 }

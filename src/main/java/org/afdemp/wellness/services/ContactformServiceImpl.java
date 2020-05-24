@@ -10,16 +10,16 @@ import org.afdemp.wellness.entities.Contactform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.afdemp.wellness.dao.ContactformsDaoImpl;
+import org.afdemp.wellness.dao.ContactformDaoImpl;
 /**
  *
  * @author ticho
  */
 @Service("contactFormsService")
 @Transactional
-public class ContactformsServiceImpl implements IContactformsService {
+public class ContactformServiceImpl implements IContactformService {
      @Autowired
-    ContactformsDaoImpl dao;
+    ContactformDaoImpl dao;
      
     @Override
     public List<Contactform> findAllContactforms() {
@@ -33,7 +33,7 @@ public class ContactformsServiceImpl implements IContactformsService {
     }
 
     @Override
-    public Contactform findById(int id) {
+    public Contactform findById(long id) {
       if (id <= 0) {
             return null;
 
@@ -48,27 +48,26 @@ public class ContactformsServiceImpl implements IContactformsService {
     }
 
     @Override
-    public boolean delete(int id) {
-         if (id <= 0) {
+    public boolean delete(long id) {
+     if (id <= 0) {
 
-            return false;
-        } else {
+        return false;
+    } else {
 
-            return dao.delete(id);
-        }
+        return dao.delete(id);
+    }
     }
 
     @Override
     public boolean update(Contactform contactform) {
-//         int id=contactform.getId();     ---> incompatible types int id-long!!!!!!!!!!
-//        contactform = findBy(id);
-//        if (contactform != null) {
-//            dao.update(contactform);
-//            return true;
-//        } else {
-//            return false;
-//        }
-    return false; //για να μη χτυπαει μεχρι να φτιαξουμε το long ing 
+       
+        contactform = findById(contactform.getId());
+        if (contactform != null) {
+            dao.update(contactform);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     

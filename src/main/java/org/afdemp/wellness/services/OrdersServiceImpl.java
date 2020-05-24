@@ -6,7 +6,7 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.dao.IOrderDao;
+import org.afdemp.wellness.dao.OrderDaoImpl;
 import org.afdemp.wellness.entities.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,13 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class OrdersServiceImpl implements IOrdersService {
 
     @Autowired
-    private IOrderDao dao;
+    private OrderDaoImpl dao;
 
     public List<Order> findAllOrders() {
-        return dao.findAllOrders();
+        return dao.findAll();
     }
 
-    public Order findById(int id) {
+    public Order findById(long id) {
         if (id <= 0) {
             return null;
         } else {
@@ -35,7 +35,7 @@ public class OrdersServiceImpl implements IOrdersService {
         return dao.save(order);
     }
 
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         if (id <= 0) {
             return false;
         } else {
@@ -43,8 +43,8 @@ public class OrdersServiceImpl implements IOrdersService {
         }
     }
 
-    public boolean updateById(int id, Order order) {
-        if (findById(id) != null) {
+    public boolean updateById(Order order) {
+        if (findById(order.getId()) != null) {
             return dao.update(order);
         } else {
             return false;
