@@ -51,12 +51,11 @@ public class ProductServiceImpl implements IProductService{
         
     }
 
-
     public boolean updateById(int id, Product product) {
-       if(id <= 0){
-           return false;
-       }else {
-           return dao.update(product);
-       }
+        if (findById(id) != null) {
+            return dao.update(product);
+        } else {
+            return false;
+        }
     }
 }
