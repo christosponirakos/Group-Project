@@ -1,16 +1,26 @@
+<%-- 
+    Document   : contact
+    Created on : 23 Μαϊ 2020, 11:16:33 μμ
+    Author     : user
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <head>
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="css/styles.css" rel="stylesheet" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
       <title>Contact</title> 
       <link rel="icon" type="image/x-icon" href="assets/img/wellness.png" /> 
-  
-
-
-      <style>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
+    </head>
+    
+    
+   <style>
           header.masthead {
   padding-top: 10.5rem;
   padding-bottom: 6rem;

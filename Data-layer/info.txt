@@ -1,1 +1,1 @@
-All related files to the database design and development are upoaded in this folder.
+All files related to the database design and development are upoaded in this folder.

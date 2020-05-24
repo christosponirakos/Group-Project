@@ -11,5 +11,5 @@ public interface IOrdersService {
     public Order findById(int id);
     public boolean save(Order order);
     public boolean delete(int id);
-    public boolean update(Order order);
+    public boolean updateById(int id, Order order);
 }
