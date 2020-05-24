@@ -29,7 +29,11 @@ public class ProductServiceImpl implements IProductService{
 
     
     public Product findById(int id) {
-        return dao.findById(id);
+        if(id <= 0){
+            return null;
+        }else {
+            return dao.findById(id);
+        }
     }
 
     
@@ -39,16 +43,20 @@ public class ProductServiceImpl implements IProductService{
 
 
     public boolean delete(int id) {
-        return dao.delete(id);
-    }
-
-    //adding the rest of the properties
-    //checking if updated?
-    public boolean update(Product product) {
-        product.setCartList(cartList);
-        dao.update(product);
-        return true;
+        if(id <= 0){
+            return false;
+        }else{
+            return dao.delete(id);
+        }
         
     }
-    
+
+
+    public boolean updateById(int id, Product product) {
+       if(id <= 0){
+           return false;
+       }else {
+           return dao.update(product);
+       }
+    }
 }

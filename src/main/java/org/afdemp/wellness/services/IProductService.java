@@ -9,5 +9,5 @@ public interface IProductService {
     public Product findById(int id);
     public boolean save(Product product);
     public boolean delete(int id);
-    public boolean update(Product product);
+    public boolean updateById(int id, Product product);
 }
