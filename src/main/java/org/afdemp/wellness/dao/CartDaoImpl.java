@@ -14,9 +14,9 @@ public class CartDaoImpl extends AbstractDao<Integer, Cart> implements IObjectDa
     
     
     @Override
-    public List<Product> findAll() {
+    public List<Cart> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Product>) criteria.list();
+        return (List<Cart>) criteria.list();
     }
 
     
