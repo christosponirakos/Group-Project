@@ -1,7 +1,6 @@
 package org.afdemp.wellness.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,15 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "orders", catalog = "wellness", schema = "")
+@Table(name = "category_type", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Order implements Serializable {
+public class CategoryType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,22 +28,19 @@ public class Order implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "purchase_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date purchaseDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId", fetch = FetchType.EAGER)
-    private List<Subscription> subscriptionsList;
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Product productId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private Category categoryId;
+    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private User userId;
+    private Type typeId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryTypeId", fetch = FetchType.EAGER)
+    private List<ProductTypeCategory> productTypeCategoryList;
 
-    public Order() {
+    public CategoryType() {
     }
 
-    public Order(Long id) {
+    public CategoryType(Long id) {
         this.id = id;
     }
 
@@ -58,37 +52,29 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public Category getCategoryId() {
+        return categoryId;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setCategoryId(Category categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Type getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Type typeId) {
+        this.typeId = typeId;
     }
 
     @XmlTransient
-    public List<Subscription> getSubscriptionsList() {
-        return subscriptionsList;
+    public List<ProductTypeCategory> getProductTypeCategoryList() {
+        return productTypeCategoryList;
     }
 
-    public void setSubscriptionsList(List<Subscription> subscriptionsList) {
-        this.subscriptionsList = subscriptionsList;
-    }
-
-    public Product getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setProductTypeCategoryList(List<ProductTypeCategory> productTypeCategoryList) {
+        this.productTypeCategoryList = productTypeCategoryList;
     }
 
     @Override
@@ -101,10 +87,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof CategoryType)) {
             return false;
         }
-        Order other = (Order) object;
+        CategoryType other = (CategoryType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -113,7 +99,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.wellness.entities.Orders[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.CategoryType[ id=" + id + " ]";
     }
     
 }

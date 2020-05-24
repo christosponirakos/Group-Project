@@ -1,8 +1,9 @@
 package org.afdemp.wellness.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,11 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "cart", catalog = "wellness", schema = "")
@@ -28,14 +28,8 @@ public class Cart implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "date_added", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateAdded;
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Product productId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cartId", fetch = FetchType.EAGER)
+    private List<CartProduct> cartProductsList;
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
@@ -47,11 +41,6 @@ public class Cart implements Serializable {
         this.id = id;
     }
 
-    public Cart(Long id, Date dateAdded) {
-        this.id = id;
-        this.dateAdded = dateAdded;
-    }
-
     public Long getId() {
         return id;
     }
@@ -60,20 +49,13 @@ public class Cart implements Serializable {
         this.id = id;
     }
 
-    public Date getDateAdded() {
-        return dateAdded;
+    @XmlTransient
+    public List<CartProduct> getCartProductsList() {
+        return cartProductsList;
     }
 
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public Product getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Product productId) {
-        this.productId = productId;
+    public void setCartProductsList(List<CartProduct> cartProductsList) {
+        this.cartProductsList = cartProductsList;
     }
 
     public User getUserId() {
@@ -106,7 +88,7 @@ public class Cart implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.Cart[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.Cart[ id=" + id + " ]";
     }
     
 }

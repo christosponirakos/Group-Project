@@ -6,11 +6,11 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Contactform;
+import org.afdemp.wellness.entities.ContactForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.afdemp.wellness.dao.ContactformDaoImpl;
+import org.afdemp.wellness.dao.ContactFormDaoImpl;
 /**
  *
  * @author ticho
@@ -19,11 +19,11 @@ import org.afdemp.wellness.dao.ContactformDaoImpl;
 @Transactional
 public class ContactformServiceImpl implements IContactformService {
      @Autowired
-    ContactformDaoImpl dao;
+    ContactFormDaoImpl dao;
      
     @Override
-    public List<Contactform> findAllContactforms() {
-      List<Contactform> contactForms = dao.findAll();
+    public List<ContactForm> findAllContactforms() {
+      List<ContactForm> contactForms = dao.findAll();
         if (contactForms.size() == 0) {
             //oops something went wrong---> sout ???out.print ???
             return null;
@@ -33,7 +33,7 @@ public class ContactformServiceImpl implements IContactformService {
     }
 
     @Override
-    public Contactform findById(long id) {
+    public ContactForm findById(long id) {
       if (id <= 0) {
             return null;
 
@@ -43,7 +43,7 @@ public class ContactformServiceImpl implements IContactformService {
     }
 
     @Override
-    public boolean save(Contactform contactform) {
+    public boolean save(ContactForm contactform) {
         return dao.save(contactform);
     }
 
@@ -59,7 +59,7 @@ public class ContactformServiceImpl implements IContactformService {
     }
 
     @Override
-    public boolean update(Contactform contactform) {
+    public boolean update(ContactForm contactform) {
        
         contactform = findById(contactform.getId());
         if (contactform != null) {

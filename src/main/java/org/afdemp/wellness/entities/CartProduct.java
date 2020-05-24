@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "orders", catalog = "wellness", schema = "")
+@Table(name = "cart_products", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Order implements Serializable {
+public class CartProduct implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,22 +31,22 @@ public class Order implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "purchase_date")
+    @Column(name = "created_time")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date purchaseDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId", fetch = FetchType.EAGER)
-    private List<Subscription> subscriptionsList;
+    private Date createdTime;
+    @JoinColumn(name = "cart_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Cart cartId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId", fetch = FetchType.EAGER)
+    private List<CartProduct> cartProductsList;
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Product productId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private User userId;
+    private CartProduct productId;
 
-    public Order() {
+    public CartProduct() {
     }
 
-    public Order(Long id) {
+    public CartProduct(Long id) {
         this.id = id;
     }
 
@@ -58,37 +58,37 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Cart getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Cart cartId) {
+        this.cartId = cartId;
     }
 
     @XmlTransient
-    public List<Subscription> getSubscriptionsList() {
-        return subscriptionsList;
+    public List<CartProduct> getCartProductsList() {
+        return cartProductsList;
     }
 
-    public void setSubscriptionsList(List<Subscription> subscriptionsList) {
-        this.subscriptionsList = subscriptionsList;
+    public void setCartProductsList(List<CartProduct> cartProductsList) {
+        this.cartProductsList = cartProductsList;
     }
 
-    public Product getProductId() {
+    public CartProduct getProductId() {
         return productId;
     }
 
-    public void setProductId(Product productId) {
+    public void setProductId(CartProduct productId) {
         this.productId = productId;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
     }
 
     @Override
@@ -101,10 +101,10 @@ public class Order implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof CartProduct)) {
             return false;
         }
-        Order other = (Order) object;
+        CartProduct other = (CartProduct) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -113,7 +113,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.wellness.entities.Orders[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.CartProducts[ id=" + id + " ]";
     }
     
 }

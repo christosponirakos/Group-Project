@@ -1,23 +1,23 @@
 package org.afdemp.wellness.dao;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Usercontactform;
+import org.afdemp.wellness.entities.UserContactForm;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 
 @Repository("usercontactformDao")
-public class UsercontactformDaoImpl extends AbstractDao<Integer, Usercontactform> implements IObjectDao {
+public class UserContactFormDaoImpl extends AbstractDao<Integer, UserContactForm> implements IObjectDao {
 
     @Override
-    public List<Usercontactform> findAll() {
+    public List<UserContactForm> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Usercontactform>) criteria.list();
+        return (List<UserContactForm>) criteria.list();
     }
 
     @Override
-    public Usercontactform findById(long id) {
-        Usercontactform cf = getByKey((int) id);
+    public UserContactForm findById(long id) {
+        UserContactForm cf = getByKey((int) id);
         if (cf != null) {
             return cf;
         }
@@ -26,7 +26,7 @@ public class UsercontactformDaoImpl extends AbstractDao<Integer, Usercontactform
 
     @Override
     public boolean save(Object entity) {
-        Usercontactform usercontactform = (Usercontactform) entity;
+        UserContactForm usercontactform = (UserContactForm) entity;
         boolean save = persist(usercontactform);
         if (save) {
             return false;
@@ -36,7 +36,7 @@ public class UsercontactformDaoImpl extends AbstractDao<Integer, Usercontactform
 
     @Override
     public boolean delete(long id) {
-        Usercontactform ucf = getByKey((int) id);
+        UserContactForm ucf = getByKey((int) id);
         if (ucf != null) {
             delete(ucf);
             if (getByKey((int) id) == null) {
@@ -48,8 +48,8 @@ public class UsercontactformDaoImpl extends AbstractDao<Integer, Usercontactform
 
     @Override
     public boolean update(Object entity) {
-        Usercontactform usercontactform = (Usercontactform) entity;
-        Usercontactform ucf = (Usercontactform) findById(usercontactform.getId());
+        UserContactForm usercontactform = (UserContactForm) entity;
+        UserContactForm ucf = (UserContactForm) findById(usercontactform.getId());
         if (ucf != null) {
             ucf.setUserId(usercontactform.getUserId());
             ucf.setSubject(usercontactform.getSubject());

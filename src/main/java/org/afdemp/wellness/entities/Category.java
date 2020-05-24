@@ -3,13 +3,14 @@ package org.afdemp.wellness.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,9 +18,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "role", catalog = "wellness", schema = "")
+@Table(name = "categories", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Role implements Serializable {
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,26 +30,22 @@ public class Role implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 40)
-    @Column(name = "name", nullable = false, length = 40)
-    private String name;
-    @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
-    private List<User> userList;
+    @Size(min = 1, max = 45)
+    @Column(name = "category", nullable = false, length = 45)
+    private String category;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId", fetch = FetchType.EAGER)
+    private List<CategoryType> categoryTypeList;
 
-    public Role() {
+    public Category() {
     }
 
-    public Role(Long id) {
+    public Category(Long id) {
         this.id = id;
     }
-    
-    public Role(String name) {
-        this.name = name;
-    }
 
-    public Role(Long id, String name) {
+    public Category(Long id, String category) {
         this.id = id;
-        this.name = name;
+        this.category = category;
     }
 
     public Long getId() {
@@ -59,21 +56,21 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @XmlTransient
-    public List<User> getUserList() {
-        return userList;
+    public List<CategoryType> getCategoryTypeList() {
+        return categoryTypeList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setCategoryTypeList(List<CategoryType> categoryTypeList) {
+        this.categoryTypeList = categoryTypeList;
     }
 
     @Override
@@ -86,10 +83,10 @@ public class Role implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Role)) {
+        if (!(object instanceof Category)) {
             return false;
         }
-        Role other = (Role) object;
+        Category other = (Category) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +95,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.wellness.entities.Role[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.Categories[ id=" + id + " ]";
     }
     
 }

@@ -57,7 +57,6 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements IOb
             p.setExpire(product.getExpire());
             p.setDurationInDays(product.getDurationInDays());
             p.setImage(product.getImage());
-            p.setTypeId(product.getTypeId());
             return save(p);
         }
         return false;

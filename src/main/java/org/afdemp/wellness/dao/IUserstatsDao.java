@@ -1,15 +1,15 @@
 package org.afdemp.wellness.dao;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Userstats;
+import org.afdemp.wellness.entities.UserStats;
 
 
 
 public interface IUserstatsDao {
     
-    public List<Userstats> findAllUserStats();
-    public Userstats findById(int id);
-    public boolean save(Userstats userstats);
+    public List<UserStats> findAllUserStats();
+    public UserStats findById(int id);
+    public boolean save(UserStats userstats);
     public boolean delete(int id);
-    public boolean update(Userstats userstats);
+    public boolean update(UserStats userstats);
 }

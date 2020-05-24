@@ -2,12 +2,12 @@ package org.afdemp.wellness.services;
 
 import org.afdemp.wellness.dao.*;
 import java.util.List;
-import org.afdemp.wellness.entities.Usercontactform;
+import org.afdemp.wellness.entities.UserContactForm;
 
 public interface IUsercontactformService {
-    public List<Usercontactform> findAllUsercontactforms();
-    public Usercontactform findById(long id);
-    public boolean save(Usercontactform usercontactform);
+    public List<UserContactForm> findAllUsercontactforms();
+    public UserContactForm findById(long id);
+    public boolean save(UserContactForm usercontactform);
     public boolean delete(long id);
-    public boolean update(Usercontactform usercontactform);
+    public boolean update(UserContactForm usercontactform);
 }
