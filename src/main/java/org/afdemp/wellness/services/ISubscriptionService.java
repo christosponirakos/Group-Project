@@ -11,5 +11,5 @@ public interface ISubscriptionService {
     public Subscription findById(int id);
     public boolean save(Subscription subscription);
     public boolean delete(int id);
-    public boolean update(Subscription subscription);
+    public boolean updateById(int id, Subscription subscription);
 }
