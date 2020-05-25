@@ -6,8 +6,8 @@
 package org.afdemp.wellness.services;
 
 import java.util.List;
-import org.afdemp.wellness.dao.UsercontactformDaoImpl;
-import org.afdemp.wellness.entities.Usercontactform;
+import org.afdemp.wellness.dao.UserContactFormDaoImpl;
+import org.afdemp.wellness.entities.UserContactForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userContactFormService")
 @Transactional
 public class UsercontactformServiceImpl implements IUsercontactformService{
+    
     @Autowired
-    UsercontactformDaoImpl dao;
+    UserContactFormDaoImpl dao;
 
     @Override
-    public List<Usercontactform> findAllUsercontactforms() {
-          List<Usercontactform> userContactForms = dao.findAll();
+    public List<UserContactForm> findAllUsercontactforms() {
+          List<UserContactForm> userContactForms = dao.findAll();
         if (userContactForms.size() == 0) {
             //oops something went wrong---> sout ???out.print ???
             return null;
@@ -34,7 +35,7 @@ public class UsercontactformServiceImpl implements IUsercontactformService{
     }
 
     @Override
-    public Usercontactform findById(long id) {
+    public UserContactForm findById(long id) {
            if (id <= 0) {
             return null;
 
@@ -44,7 +45,7 @@ public class UsercontactformServiceImpl implements IUsercontactformService{
     }
 
     @Override
-    public boolean save(Usercontactform usercontactform) {
+    public boolean save(UserContactForm usercontactform) {
           return dao.save(usercontactform);
     }
 
@@ -60,7 +61,7 @@ public class UsercontactformServiceImpl implements IUsercontactformService{
     }
 
     @Override
-    public boolean update(Usercontactform usercontactform) {
+    public boolean update(UserContactForm usercontactform) {
          usercontactform = findById(usercontactform.getId());
         if (usercontactform != null) {
             dao.update(usercontactform);

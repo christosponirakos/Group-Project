@@ -1,23 +1,23 @@
 package org.afdemp.wellness.dao;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Userstats;
+import org.afdemp.wellness.entities.UserStats;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 
 @Repository("userstatsDao")
-public class UserstatsDaoImpl extends AbstractDao<Integer, Userstats> implements IObjectDao {
+public class UserstatsDaoImpl extends AbstractDao<Integer, UserStats> implements IObjectDao {
 
     @Override
-    public List<Userstats> findAll() {
+    public List<UserStats> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Userstats>) criteria.list();
+        return (List<UserStats>) criteria.list();
     }
 
     @Override
-    public Userstats findById(long id) {
-        Userstats us = getByKey((int) id);
+    public UserStats findById(long id) {
+        UserStats us = getByKey((int) id);
         if (us != null) {
             return us;
         }
@@ -26,7 +26,7 @@ public class UserstatsDaoImpl extends AbstractDao<Integer, Userstats> implements
 
     @Override
     public boolean save(Object entity) {
-        Userstats contactform = (Userstats) entity;
+        UserStats contactform = (UserStats) entity;
         boolean save = persist(contactform);
         if (save) {
             return false;
@@ -36,7 +36,7 @@ public class UserstatsDaoImpl extends AbstractDao<Integer, Userstats> implements
 
     @Override
     public boolean delete(long id) {
-        Userstats us = getByKey((int) id);
+        UserStats us = getByKey((int) id);
         if (us != null) {
             delete(us);
             if (getByKey((int) id) == null) {
@@ -48,8 +48,8 @@ public class UserstatsDaoImpl extends AbstractDao<Integer, Userstats> implements
 
     @Override
     public boolean update(Object entity) {
-        Userstats userstats = (Userstats) entity;
-        Userstats us = (Userstats) findById(userstats.getId());
+        UserStats userstats = (UserStats) entity;
+        UserStats us = (UserStats) findById(userstats.getId());
         if (us != null) {
             us.setAge(userstats.getAge());
             us.setSex(userstats.getSex());

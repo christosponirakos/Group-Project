@@ -57,28 +57,28 @@ public class User implements Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "password", nullable = false, length = 25)
     private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "create_time", nullable = false)
+    @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @JoinTable(name = "users_roles", joinColumns = {
         @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+        , @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
         , @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+        , @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
         , @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)})
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+    private List<Role> roleList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Subscription> subscriptionsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Userstats> usersStatsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Order> ordersList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
     private List<Cart> cartList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Usercontactform> usersContactformsList;
+    private List<UserContactForm> usersContactformsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<UserStats> usersStatsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<Order> ordersList;
 
     public User() {
     }
@@ -87,13 +87,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Long id, String email, String firstName, String lastName, String password, Date createTime) {
+    
+    
+    public User(Long id, String email, String firstName, String lastName, String password) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.createTime = createTime;
     }
 
     public Long getId() {
@@ -146,11 +147,11 @@ public class User implements Serializable {
 
     @XmlTransient
     public List<Role> getRoles() {
-        return roles;
+        return roleList;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoles(List<Role> roleList) {
+        this.roleList = roleList;
     }
 
     @XmlTransient
@@ -163,11 +164,29 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public List<Userstats> getUsersStatsList() {
+    public List<Cart> getCartList() {
+        return cartList;
+    }
+
+    public void setCartList(List<Cart> cartList) {
+        this.cartList = cartList;
+    }
+
+    @XmlTransient
+    public List<UserContactForm> getUsersContactformsList() {
+        return usersContactformsList;
+    }
+
+    public void setUsersContactformsList(List<UserContactForm> usersContactformsList) {
+        this.usersContactformsList = usersContactformsList;
+    }
+
+    @XmlTransient
+    public List<UserStats> getUsersStatsList() {
         return usersStatsList;
     }
 
-    public void setUsersStatsList(List<Userstats> usersStatsList) {
+    public void setUsersStatsList(List<UserStats> usersStatsList) {
         this.usersStatsList = usersStatsList;
     }
 
@@ -178,24 +197,6 @@ public class User implements Serializable {
 
     public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
-    }
-
-    @XmlTransient
-    public List<Cart> getCartList() {
-        return cartList;
-    }
-
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
-    }
-
-    @XmlTransient
-    public List<Usercontactform> getUsersContactformsList() {
-        return usersContactformsList;
-    }
-
-    public void setUsersContactformsList(List<Usercontactform> usersContactformsList) {
-        this.usersContactformsList = usersContactformsList;
     }
 
     @Override
@@ -220,7 +221,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.User[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.User[ id=" + id + " ]";
     }
     
 }

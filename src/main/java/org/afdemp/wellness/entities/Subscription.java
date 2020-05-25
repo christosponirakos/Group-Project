@@ -120,7 +120,7 @@ public class Subscription implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.Subscriptions[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.Subscriptions[ id=" + id + " ]";
     }
     
 }

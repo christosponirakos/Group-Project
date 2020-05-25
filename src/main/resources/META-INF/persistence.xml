@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="org.afdemp_wellness_war_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.afdemp.wellness.entities.ProductTypeCategory</class>
+    <class>org.afdemp.wellness.entities.CategoryType</class>
+    <class>org.afdemp.wellness.entities.Type</class>
+    <class>org.afdemp.wellness.entities.User</class>
+    <class>org.afdemp.wellness.entities.Role</class>
+    <class>org.afdemp.wellness.entities.Cart</class>
+    <class>org.afdemp.wellness.entities.Subscription</class>
+    <class>org.afdemp.wellness.entities.Product</class>
+    <class>org.afdemp.wellness.entities.Order</class>
+    <class>org.afdemp.wellness.entities.Category</class>
+    <class>org.afdemp.wellness.entities.CartProduct</class>
+    <class>org.afdemp.wellness.entities.UserStats</class>
+    <class>org.afdemp.wellness.entities.UserContactForm</class>
+    <class>org.afdemp.wellness.entities.ContactForm</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ra1.anystream.eu:3012/wellness?serverTimezone=Europe/Athens"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="AFDEmp_MySQL1"/>
+    </properties>
+  </persistence-unit>
+</persistence>

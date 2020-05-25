@@ -1,23 +1,23 @@
 package org.afdemp.wellness.dao;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Contactform;
+import org.afdemp.wellness.entities.ContactForm;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 
 @Repository("contactformDao")
-public class ContactformDaoImpl extends AbstractDao<Integer, Contactform> implements IObjectDao {
+public class ContactFormDaoImpl extends AbstractDao<Integer, ContactForm> implements IObjectDao {
 
     @Override
-    public List<Contactform> findAll() {
+    public List<ContactForm> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Contactform>) criteria.list();
+        return (List<ContactForm>) criteria.list();
     }
 
     @Override
-    public Contactform findById(long id) {
-        Contactform cf = getByKey((int) id);
+    public ContactForm findById(long id) {
+        ContactForm cf = getByKey((int) id);
         if (cf != null) {
             return cf;
         }
@@ -26,7 +26,7 @@ public class ContactformDaoImpl extends AbstractDao<Integer, Contactform> implem
 
     @Override
     public boolean save(Object entity) {
-        Contactform contactform = (Contactform) entity;
+        ContactForm contactform = (ContactForm) entity;
         boolean save = persist(contactform);
         if (save) {
             return false;
@@ -36,7 +36,7 @@ public class ContactformDaoImpl extends AbstractDao<Integer, Contactform> implem
 
     @Override
     public boolean delete(long id) {
-        Contactform cf = getByKey((int) id);
+        ContactForm cf = getByKey((int) id);
         if (cf != null) {
             delete(cf);
             if (getByKey((int) id) == null) {
@@ -48,8 +48,8 @@ public class ContactformDaoImpl extends AbstractDao<Integer, Contactform> implem
 
     @Override
     public boolean update(Object entity) {
-        Contactform contactform = (Contactform) entity;
-        Contactform cf = (Contactform) findById(contactform.getId());
+        ContactForm contactform = (ContactForm) entity;
+        ContactForm cf = (ContactForm) findById(contactform.getId());
         if (cf != null) {
             cf.setName(contactform.getName());
             cf.setEmail(contactform.getEmail());

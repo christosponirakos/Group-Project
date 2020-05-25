@@ -11,16 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 
 @Entity
 @Table(name = "products", catalog = "wellness", schema = "")
@@ -66,12 +63,9 @@ public class Product implements Serializable {
     @Column(name = "image", nullable = false)
     private byte[] image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId", fetch = FetchType.EAGER)
-    private List<Order> ordersList;
+    private List<ProductTypeCategory> productTypeCategoryList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId", fetch = FetchType.EAGER)
-    private List<Cart> cartList;
-    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Type typeId;
+    private List<Order> ordersList;
 
     public Product() {
     }
@@ -155,29 +149,21 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
+    public List<ProductTypeCategory> getProductTypeCategoryList() {
+        return productTypeCategoryList;
+    }
+
+    public void setProductTypeCategoryList(List<ProductTypeCategory> productTypeCategoryList) {
+        this.productTypeCategoryList = productTypeCategoryList;
+    }
+
+    @XmlTransient
     public List<Order> getOrdersList() {
         return ordersList;
     }
 
     public void setOrdersList(List<Order> ordersList) {
         this.ordersList = ordersList;
-    }
-
-    @XmlTransient
-    public List<Cart> getCartList() {
-        return cartList;
-    }
-
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
-    }
-
-    public Type getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Type typeId) {
-        this.typeId = typeId;
     }
 
     @Override
@@ -202,7 +188,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.Products[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.Products[ id=" + id + " ]";
     }
     
 }

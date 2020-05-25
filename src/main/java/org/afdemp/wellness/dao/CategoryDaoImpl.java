@@ -1,28 +1,22 @@
 package org.afdemp.wellness.dao;
 
 import java.util.List;
-import org.afdemp.wellness.entities.Cart;
+import org.afdemp.wellness.entities.Category;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
-@Repository("cartDao")
-public class CartDaoImpl extends AbstractDao<Integer, Cart> implements IObjectDao {
+@Repository("categoryDao")
+public class CategoryDaoImpl extends AbstractDao<Integer, Category> implements IObjectDao {
 
-    // find all products per user_id
-//    String query = "SELECT product_id FROM `cart` WHERE `user_id` = '" + email + "';";
-    
-    
     @Override
-    public List<Cart> findAll() {
+    public List<Category> findAll() {
         Criteria criteria = createEntityCriteria();
-        return (List<Cart>) criteria.list();
+        return (List<Category>) criteria.list();
     }
 
-    
-    
     @Override
-    public Cart findById(long id) {
-        Cart c = getByKey((int) id);
+    public Category findById(long id) {
+        Category c = getByKey((int) id);
         if (c != null) {
             return c;
         }
@@ -31,8 +25,8 @@ public class CartDaoImpl extends AbstractDao<Integer, Cart> implements IObjectDa
 
     @Override
     public boolean save(Object entity) {
-        Cart cart = (Cart) entity;
-        boolean save = persist(cart);
+        Category category = (Category) entity;
+        boolean save = persist(category);
         if (save) {
             return false;
         }
@@ -41,7 +35,7 @@ public class CartDaoImpl extends AbstractDao<Integer, Cart> implements IObjectDa
 
     @Override
     public boolean delete(long id) {
-        Cart c = getByKey((int) id);
+        Category c = getByKey((int) id);
         if (c != null) {
             delete(c);
             if (getByKey((int) id) == null) {
@@ -53,10 +47,11 @@ public class CartDaoImpl extends AbstractDao<Integer, Cart> implements IObjectDa
 
     @Override
     public boolean update(Object entity) {
-        Cart cart = (Cart) entity;
-        Cart c = (Cart) findById(cart.getId());
+        Category category = (Category) entity;
+        Category c = (Category) findById(category.getId());
         if (c != null) {
-            c.setUserId(cart.getUserId());
+            c.setCategory(category.getCategory());
+
             return save(c);
         }
         return false;

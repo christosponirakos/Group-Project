@@ -34,7 +34,7 @@ public class Type implements Serializable {
     @Column(name = "type", nullable = false, length = 20)
     private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeId", fetch = FetchType.EAGER)
-    private List<Product> productsList;
+    private List<CategoryType> categoryTypeList;
 
     public Type() {
     }
@@ -65,12 +65,12 @@ public class Type implements Serializable {
     }
 
     @XmlTransient
-    public List<Product> getProductsList() {
-        return productsList;
+    public List<CategoryType> getCategoryTypeList() {
+        return categoryTypeList;
     }
 
-    public void setProductsList(List<Product> productsList) {
-        this.productsList = productsList;
+    public void setCategoryTypeList(List<CategoryType> categoryTypeList) {
+        this.categoryTypeList = categoryTypeList;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.Type[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.Type[ id=" + id + " ]";
     }
     
 }

@@ -15,10 +15,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @Entity
 @Table(name = "users_stats", catalog = "wellness", schema = "")
 @XmlRootElement
-public class Userstats implements Serializable {
+public class UserStats implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,10 +46,10 @@ public class Userstats implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userId;
 
-    public Userstats() {
+    public UserStats() {
     }
 
-    public Userstats(Long id) {
+    public UserStats(Long id) {
         this.id = id;
     }
 
@@ -126,10 +127,10 @@ public class Userstats implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Userstats)) {
+        if (!(object instanceof UserStats)) {
             return false;
         }
-        Userstats other = (Userstats) object;
+        UserStats other = (UserStats) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -138,7 +139,7 @@ public class Userstats implements Serializable {
 
     @Override
     public String toString() {
-        return "org.afdemp.leisurehotel4animals.entities.UsersStats[ id=" + id + " ]";
+        return "org.afdemp.wellness.entities.UserStats[ id=" + id + " ]";
     }
     
 }
