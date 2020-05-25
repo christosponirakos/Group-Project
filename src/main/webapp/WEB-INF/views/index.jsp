@@ -10,6 +10,25 @@
         <title>Registration</title>
     </head>
     <body>
+        <table>
+		<tr>
+                    <td>title</td><td>price</td><td>Short</td><td>details</td>
+		</tr>
+		<c:forEach items="${products}" var="product">
+			<tr>
+                            <td>${product.title}</td>
+                            <td>${product.price}</td>
+                            <td>${product.shortDescription}</td>
+                            <td>${product.details}</td>
+                        </tr>
+		</c:forEach>
+	</table>
+        
+        
+        
+        
+        
+      <!--  
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -41,6 +60,8 @@
             </p>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </body>

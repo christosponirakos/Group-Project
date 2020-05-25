@@ -28,11 +28,11 @@ public class AppController {
     IProductService productService;
     
     
-    @RequestMapping(value = {"/nutrition"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String nutrition(ModelMap view){
-        List<Product> nutrition = productService.findNutritions();
-        view.addAttribute("nutrition", nutrition);
-        return "nutrition";
+        List<Product> products = productService.findAllProducts();
+        view.addAttribute("products", products);
+        return "index";
         
         
     }
